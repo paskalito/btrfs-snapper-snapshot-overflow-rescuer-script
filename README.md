@@ -14,9 +14,9 @@ place the script somewhere like /usr/local/bin and give only root access to it !
 
 ### crontab
 
-Possible entry in crontab ( runs every 1 minute)
+Possible entry in crontab ( runs every 1 minute), using flock prevents the script from getting started while it's still running.
 
-*/1 * * * * /usr/local/bin/snapper-delete-old-snapshots.sh
+*/1 * * * * flock -n '/usr/local/bin/snapper-delete-old-snapshots.sh.lock' '/usr/local/bin/snapper-delete-old-snapshots.sh'
 
 ### logs
 

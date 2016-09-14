@@ -55,7 +55,7 @@ else
 				#Wait until the deletion of the subolume is finished/completed
 				btrfs subvolume sync $VOLUMES
 		
-				#Make sure you at least get one block free'd in order to have an operatinf fs.
+				#Make sure you at least get one block free'd in order to have an operating fs.
 				btrfs balance start -v -dlimit=1 $VOLUMES
 		
 				#recalculate free space on the volume		
@@ -64,6 +64,8 @@ else
 				echo More than $FREESPACEMINIMUM GB on Volume $VOLUMES available
 			else
 				echo You have Only $FREESPACE GB left on $VOLUMES but there are no snapshots left. - DELETE/MOVE SOME FILES!!!
+				#If you hit that point chances are superhigh your balancing is already broken or close to broken so we try to free some blocks
+				btrfs balance start -v -dlimit=1 $VOLUMES
 				#In order to exit the while loop
 				break
 			fi
