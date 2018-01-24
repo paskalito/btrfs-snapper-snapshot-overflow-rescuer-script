@@ -7,6 +7,9 @@ you're free too specifiy the FREESPACEMINIMUM variabel as you please. its the nu
 
 
 # Be Aware
+### compatibility 
+
+this script requires the btrfs usage to be available which is not the case in btrfstools 3.17 which is default for debian right now.
 
 ### root (don't be silly)
 
